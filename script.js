@@ -9,24 +9,25 @@ var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 //joined arrays for all possible user selections
 var alphaCombined = alpha.concat(alphaUpper);
-var allCombined = alpha.concat(specialCharacters, alphaUpper, numbers);
 var numAlpha = alpha.concat(numbers);
 var alphaSpec = alpha.concat(specialCharacters);
 var alphaNumSpec = alpha.concat(numbers, specialCharacters);
 var alphaUpperSpec = alpha.concat(alphaUpper, specialCharacters);
+var alphaUpperNum = alpha.concat(alphaUpper, numbers);
+var allCombined = alpha.concat(specialCharacters, alphaUpper, numbers);
 
 //repeats the prompt for length if the user's input is not within the bounds
-var passLength = function() 
+/* var passLength = function() 
 {
   var input = window.prompt("Choose a length for your password between 8 and 128 characters");
   if ((input < 8) || (input > 128)) {
-    window.alert("Please enter a length between 8 and 128");
-    passLength();
+    window.alert("Please refresh and enter a length between 8 and 128");
+    return 0;
+  } else {
+    return input;
   }
-  
-  console.log(input);
-  return input;
-}
+  //console.log(input);
+} */
 
 //main function for gneerating the password
 var generatePassword = function() 
@@ -39,7 +40,15 @@ var generatePassword = function()
 
   var includeSpecial = window.confirm("Would you like your password to contain special characters?");
 
-  length = passLength();
+  //length = passLength();
+
+  length = window.prompt("Choose a length for your password between 8 and 128")
+
+  if ((length < 8) || (length > 128)) {
+    window.alert("Please refresh and enter a length betweeen 8 and 128");
+
+    return;
+  }
 
   //console.log(length);
 
@@ -79,9 +88,14 @@ var generatePassword = function()
       random = Math.floor(Math.random() * alphaUpperSpec.length)
       passwordGen[i] = alphaUpperSpec[random];
     }
+  } else if (!includeSpecial && upperCase && numbers) {   //if user wants letters, special characters, and upper case letters but no numbers
+    for (i = 0; i < length; i++) {
+      random = Math.floor(Math.random() * alphaUpperNum.length)
+      passwordGen[i] = alphaUpperNum[random];
+    }
   } else {    //if user does not select at least one of the above options, it will run through the code again
-      window.alert("Please select one of the options.");
-      generatePassword();
+      window.alert("Please refresh and select one of the options.");
+      return "Invalid";
   }
 
   //join method with "" parameters allows all indexes of the array to combine with no spaces producing a seamless string of characters for the password
