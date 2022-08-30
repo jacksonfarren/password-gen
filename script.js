@@ -45,9 +45,9 @@ var generatePassword = function()
   length = window.prompt("Choose a length for your password between 8 and 128")
 
   if ((length < 8) || (length > 128)) {
-    window.alert("Please refresh and enter a length betweeen 8 and 128");
+    window.alert("Please generate again and enter a length betweeen 8 and 128");
 
-    return;
+    return "Invalid";
   }
 
   //console.log(length);
@@ -94,7 +94,7 @@ var generatePassword = function()
       passwordGen[i] = alphaUpperNum[random];
     }
   } else {    //if user does not select at least one of the above options, it will run through the code again
-      window.alert("Please refresh and select one of the options.");
+      window.alert("Please generate again and select at least one of the options.");
       return "Invalid";
   }
 
