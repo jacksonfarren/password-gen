@@ -16,19 +16,6 @@ var alphaUpperSpec = alpha.concat(alphaUpper, specialCharacters);
 var alphaUpperNum = alpha.concat(alphaUpper, numbers);
 var allCombined = alpha.concat(specialCharacters, alphaUpper, numbers);
 
-//repeats the prompt for length if the user's input is not within the bounds
-/* var passLength = function() 
-{
-  var input = window.prompt("Choose a length for your password between 8 and 128 characters");
-  if ((input < 8) || (input > 128)) {
-    window.alert("Please refresh and enter a length between 8 and 128");
-    return 0;
-  } else {
-    return input;
-  }
-  //console.log(input);
-} */
-
 //main function for gneerating the password
 var generatePassword = function() 
 {
@@ -40,8 +27,6 @@ var generatePassword = function()
 
   var includeSpecial = window.confirm("Would you like your password to contain special characters?");
 
-  //length = passLength();
-
   length = window.prompt("Choose a length for your password between 8 and 128")
 
   if ((length < 8) || (length > 128)) {
@@ -50,11 +35,7 @@ var generatePassword = function()
     return "Invalid";
   }
 
-  //console.log(length);
-
   var upperCase = window.confirm("Do you want to include uppercase characters?");
-
-  //var lowerCase = window.confirm("Do you want to include lowercase characters?");
 
   var numbers = window.confirm("Would you like to include numbers?");
 
@@ -93,7 +74,7 @@ var generatePassword = function()
       random = Math.floor(Math.random() * alphaUpperNum.length)
       passwordGen[i] = alphaUpperNum[random];
     }
-  } else {    //if user does not select at least one of the above options, it will run through the code again
+  } else {    //if user does not select at least one of the above options, it will return Invalid
       window.alert("Please generate again and select at least one of the options.");
       return "Invalid";
   }
@@ -115,6 +96,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-//changeToUpper();
-//console.log(alphaCombined);
