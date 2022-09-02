@@ -25,8 +25,6 @@ var generatePassword = function()
   var i = 0;
   var length = 0;
 
-  var includeSpecial = window.confirm("Would you like your password to contain special characters?");
-
   length = window.prompt("Choose a length for your password between 8 and 128")
 
   if ((length < 8) || (length > 128)) {
@@ -34,6 +32,10 @@ var generatePassword = function()
 
     return "Invalid";
   }
+
+  //var incldueLowercase = window.confirm("Would you like to include lowercase letters?")
+
+  var includeSpecial = window.confirm("Would you like your password to contain special characters?");
 
   var upperCase = window.confirm("Do you want to include uppercase characters?");
 
